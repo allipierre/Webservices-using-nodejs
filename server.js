@@ -53,7 +53,7 @@ app.get("/usersacces",function(req,res){
       var response = [];
 
     if (rows.length != 0) {
-      response.push({'result' : 'success', 'data' : rows});
+      response.push({'result' : 'success', 'items' : rows});
     } else {
       response.push({'result' : 'error', 'msg' : 'No Results Found'});
     }
