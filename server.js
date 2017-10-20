@@ -1,7 +1,8 @@
-var http     = require('http'),
+
 	express  = require('express'),
 	mysql    = require('mysql')
 	parser   = require('body-parser');
+
 
 
 var connection = mysql.createConnection({
@@ -19,12 +20,21 @@ var connection = mysql.createConnection({
  }
 
  var app = express();
+
+ var server = app.listen(5000);
+ var io = require('socket.io').listen(server);
  app.use(parser.json());
  app.use(parser.urlencoded({ extended: true }));
  app.set('port', process.env.PORT || 5000);
 
 
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
+
+
+/*  This is auto initiated event when Client connects to Your Machien.  */
+
+
+
 
 app.use('/style',  express.static(__dirname + '/style'));
 
@@ -81,10 +91,14 @@ app.get("/usersacces",function(req,res){
 
  					if (result.affectedRows != 0) {
  						response.push({'result' : 'success'});
+
  					} else {
  						response.push({'msg' : 'No Result Found'});
  					}
-
+          // When a client connects, we note it in the console
+          io.sockets.on('connection', function (socket) {
+              socket.emit('message', 'You are connected!');
+          });
  					res.setHeader('Content-Type', 'application/json');
  			    	res.status(200).send(JSON.stringify(response));
  		  		} else {
@@ -176,11 +190,4 @@ app.post('/usersacces/edit/:id', function (req,res) {
 		res.setHeader('Content-Type', 'application/json');
     	res.send(200, JSON.stringify(response));
 	}
-});
-
-
-
-// Create server
-http.createServer(app).listen(app.get('port'), function(){
-	console.log('Server listening on port ' + app.get('port'));
 });
