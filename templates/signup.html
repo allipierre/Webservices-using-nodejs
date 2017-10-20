@@ -28,14 +28,18 @@
         $('#btnSignIn').click(function(evt){
           evt.preventDefault();
           $.ajax({
-            url: '/usersacces/add',
+            url: '/usersacces/edit/'+$("#id").val(),
             type:'POST',
-            data: JSON.stringify({ alias: "de",nom: "Deutschland",email: "de@yahoo.fr" }),
+            data: JSON.stringify({ nom: $("#nom").val(),nombre: $("#nombre").val(),id: $("#id").val() }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success:function(response){
               console.log(response);
-              socket.emit('message', 'You are connected!');
+              // When a client connects, we note it in the console
+
+                  socket.emit('messagex', 'sent to Database');
+                  console.log('messagex'+ 'sent to Database');
+
             },
             error:function(error){
               console.log(error);
@@ -72,12 +76,13 @@
            <div class="inner cover">
               <form class="form-signin">
                 <h2 class="form-signin-heading">Please sign up</h2>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                <label for="inputEmail" class="sr-only">Nom</label>
+                <input type="text" id="nom" class="form-control" placeholder="nom" required="" autofocus="">
+                <label for="inputPassword" class="sr-only">nombre</label>
+                <input type="text" id="nombre" class="form-control" placeholder="nombre" required="">
+                <input type="text" id="id" class="form-control" placeholder="id" required="">
 
-                <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">update</button>
               </form>
           </div>
 

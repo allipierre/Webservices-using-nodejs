@@ -21,11 +21,11 @@ var connection = mysql.createConnection({
 
  var app = express();
 
- var server = app.listen(process.env.PORT ||5000);
+ var server = app.listen(process.env.PORT ||3000);
  var io = require('socket.io').listen(server);
  app.use(parser.json());
  app.use(parser.urlencoded({ extended: true }));
- app.set('port', process.env.PORT || 5000);
+ app.set('port', process.env.PORT || 3000);
 
 
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
@@ -101,7 +101,7 @@ app.get("/usersacces",function(req,res){
  					}
           // When a client connects, we note it in the console
           io.sockets.on('connection', function (socket) {
-              socket.emit('message', 'You are connected!');
+              socket.broadcast.emit('message', 'You are connected!');
               console.log('message '+ 'You are connected!');
           });
  					res.setHeader('Content-Type', 'application/json');
@@ -151,9 +151,15 @@ app.delete('/usersacces/delete/:id', function (req,res) {
 
 			if (result.affectedRows != 0) {
 				response.push({'result' : 'success'});
+        // When a client connects, we note it in the console
+        io.sockets.on('connection', function (socket) {
+            socket.broadcast.emit('message', 'You are connected!');
+            console.log('message '+ 'You are connected!');
+        });
 			} else {
 				response.push({'msg' : 'No Result Found'});
 			}
+
 
 			res.setHeader('Content-Type', 'application/json');
 	    	res.status(200).send(JSON.stringify(response));
@@ -168,12 +174,12 @@ app.delete('/usersacces/delete/:id', function (req,res) {
 app.post('/usersacces/edit/:id', function (req,res) {
 	var id = req.params.id, response = [];
 
-	if (typeof req.body.alias !== 'undefined' &&typeof req.body.nom !== 'undefined' && typeof req.body.email !== 'undefined'
+	if (typeof req.body.nom !== 'undefined' &&  typeof req.body.id !== 'undefined' &&  typeof req.body.nombre !== 'undefined'
 	) {
-		var alias = req.body.alias, nom = req.body.nom, email = req.body.email;
+		var alias = req.body.alias, nom = req.body.nom, nombre = req.body.nombre ,id = req.body.id;
 
-		connection.query('UPDATE administration_users_niveaux_acces SET alias = ?, nom = ?, email = ? WHERE id = ?',
-			[alias, nom, email, id],
+		connection.query('UPDATE administration_users_niveaux_acces SET  nom = ? ,id = ? WHERE id = ?',
+			[nom, nombre, id],
 			function(err, result) {
 		  		if (!err){
 
@@ -182,6 +188,12 @@ app.post('/usersacces/edit/:id', function (req,res) {
 					} else {
 						response.push({'msg' : 'No Result Found'});
 					}
+
+          // When a client connects, we note it in the console
+          io.sockets.on('connection', function (socket) {
+              socket.broadcast.emit('message', 'You are connected!');
+              console.log('message '+ 'You are connected!');
+          });
 
 					res.setHeader('Content-Type', 'application/json');
 			    	res.status(200).send(JSON.stringify(response));
@@ -200,6 +212,11 @@ app.post('/usersacces/edit/:id', function (req,res) {
 
 
 io.sockets.on('connection', function (socket) {
-    socket.emit('message', 'You are connected!');
+
+  socket.on('messagex', function (message) {
+    socket.broadcast.emit('message', 'You are connected!');
     console.log('message '+ 'You are connected!');
+      });
+
+
 });
