@@ -40,6 +40,10 @@ app.get('/showSignUpPage',function(req,res){
   res.sendFile('signup.html',{'root':__dirname + '/templates'})
 })
 
+app.get('/chartjs',function(req,res){
+  res.sendFile('chartjs.html',{'root':__dirname + '/templates'})
+})
+
 
 
 app.get("/usersacces",function(req,res){
