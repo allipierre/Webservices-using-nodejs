@@ -54,6 +54,10 @@ app.get('/chartjs',function(req,res){
   res.sendFile('chartjs.html',{'root':__dirname + '/templates'})
 })
 
+app.get('/filejs',function(req,res){
+  res.sendFile('file.js',{'root':__dirname + '/js'})
+})
+
 
 
 app.get("/usersacces",function(req,res){
@@ -98,6 +102,7 @@ app.get("/usersacces",function(req,res){
           // When a client connects, we note it in the console
           io.sockets.on('connection', function (socket) {
               socket.emit('message', 'You are connected!');
+              console.log('message '+ 'You are connected!');
           });
  					res.setHeader('Content-Type', 'application/json');
  			    	res.status(200).send(JSON.stringify(response));
@@ -190,4 +195,11 @@ app.post('/usersacces/edit/:id', function (req,res) {
 		res.setHeader('Content-Type', 'application/json');
     	res.send(200, JSON.stringify(response));
 	}
+});
+
+
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('message', 'You are connected!');
+    console.log('message '+ 'You are connected!');
 });
