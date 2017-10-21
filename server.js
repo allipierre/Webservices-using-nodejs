@@ -219,7 +219,7 @@ io.sockets.on('connection', function (socket) {
     console.log('message '+ 'You are connected!');
       });
 
-      socket.on('messagex', function (message) {
+      socket.on('messagexy', function (message) {
       socket.emit('message', 'Merci Piere on cest update');
           });
 
