@@ -39,6 +39,9 @@
 
                   socket.emit('messagex', $("#vorname").val());
                   console.log('messagex'+ 'sent to Database');
+                  socket.on('messagexyz', function(message) {
+                  alertify.success('The server has a message for you: ' + message);
+                });
 
             },
             error:function(error){
