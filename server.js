@@ -101,7 +101,7 @@ app.get("/usersacces",function(req,res){
  					}
           // When a client connects, we note it in the console
           io.sockets.on('connection', function (socket) {
-              socket.broadcast.emit('message', 'You are connected!');
+              //socket.broadcast.emit('message', 'You are connected!');
               console.log('message '+ 'You are connected!');
           });
  					res.setHeader('Content-Type', 'application/json');
@@ -153,7 +153,7 @@ app.delete('/usersacces/delete/:id', function (req,res) {
 				response.push({'result' : 'success'});
         // When a client connects, we note it in the console
         io.sockets.on('connection', function (socket) {
-            socket.broadcast.emit('message', 'You are connected!');
+          //  socket.broadcast.emit('message', 'You are connected!');
             console.log('message '+ 'You are connected!');
         });
 			} else {
@@ -191,7 +191,7 @@ app.post('/usersacces/edit/:id', function (req,res) {
 
           // When a client connects, we note it in the console
           io.sockets.on('connection', function (socket) {
-              socket.broadcast.emit('message', 'You are connected!');
+            //  socket.broadcast.emit('message', 'You are connected!');
               console.log('message '+ 'You are connected!');
           });
 
