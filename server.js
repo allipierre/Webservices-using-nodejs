@@ -221,6 +221,7 @@ io.sockets.on('connection', function (socket) {
 
       socket.on('messagexy', function (message) {
       socket.emit('messagexyz', 'Merci Piere on cest update');
+      console.log('messagexyz'+ 'Merci Piere on cest update');
           });
 
 
