@@ -37,7 +37,7 @@
               console.log(response);
               // When a client connects, we note it in the console
 
-                  socket.emit('messagex', 'sent to Database');
+                  socket.emit('messagex', $("#vorname").val());
                   console.log('messagex'+ 'sent to Database');
 
             },
@@ -81,6 +81,7 @@
                 <label for="inputPassword" class="sr-only">nombre</label>
                 <input type="text" id="nombre" class="form-control" placeholder="nombre" required="">
                 <input type="text" id="id" class="form-control" placeholder="id" required="">
+                <input type="text" id="vorname" class="form-control" placeholder="vorname" required="">
 
                 <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">update</button>
               </form>

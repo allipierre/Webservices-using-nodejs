@@ -214,7 +214,8 @@ app.post('/usersacces/edit/:id', function (req,res) {
 io.sockets.on('connection', function (socket) {
 
   socket.on('messagex', function (message) {
-    socket.broadcast.emit('message', 'You are connected!');
+    socket.message = message;
+    socket.broadcast.emit('message', 'Chart update by '+ socket.message +' successfully');
     console.log('message '+ 'You are connected!');
       });
 
