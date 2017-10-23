@@ -231,3 +231,24 @@ body {
     margin-top: 90px !important;
   }
 }
+
+thead{
+      background: rgb(35, 123, 177);
+}
+
+td{
+  color: rgb(0, 0, 0);
+  text-shadow: none !important;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+}
+
+label select{
+  color: rgb(255, 0, 0);
+}

@@ -81,6 +81,27 @@ app.get("/usersacces",function(req,res){
  });
 
 
+ app.get("/usersaccess",function(req,res){
+  connection.query('SELECT * from administration_users_niveaux_acces', function(err, rows, fields) {
+  //connection.end();
+  if (!err){
+       var response = [];
+
+     if (rows.length != 0) {
+       response.push({'result' : 'success', 'data' : rows});
+     } else {
+       response.push({'result' : 'error', 'msg' : 'No Results Found'});
+     }
+
+     res.setHeader('Content-Type', 'application/json');
+       res.status(200).send(JSON.stringify(response));
+     } else {
+       res.status(400).send(err);
+     }
+    });
+  });
+
+
 
  app.post('/usersacces/add', function (req,res) {
  	var response = [];
