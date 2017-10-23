@@ -64,6 +64,23 @@
     </div>
     </div>
 
+
+    <div style="padding-top:30px;"class="container">
+    <div class="row">
+       <div class="col-lg-6">
+    <div class="inner cover">
+      <canvas id="chartjs-0" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+    </div>
+    </div>
+
+    <div class="col-lg-6">
+ <div class="inner cover">
+   <canvas id="chartjs-4" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+ </div>
+ </div>
+    </div>
+    </div>
+
     <footer class="footer">
       <div class="container">
         <span class="text-muted">Node App, by Pierre..</span>
@@ -85,7 +102,7 @@
     var graph_label = [],
         graph_data = [];
         var ctx;
-        var myChart, chartjs;
+        var myChart, chartjs, chartLine;
 
     $.ajax({
             url: '/usersacces',
@@ -159,6 +176,21 @@
     }
 });
 
+ chartLine = new Chart(document.getElementById("chartjs-0"),{
+                                                    "type": "line",
+                                                    "data": {
+                                                        "labels": graph_label,
+                                                        "datasets": [{
+                                                            "label": "My First Dataset",
+                                                            "data": graph_data,
+                                                            "fill": false,
+                                                            "borderColor": "rgb(75, 192, 192)",
+                                                            "lineTension": 0.1
+                                                        }]
+                                                    },
+                                                    "options": {}
+                                                });
+
         }).always(function() {
             console.log(1);
 
@@ -181,8 +213,11 @@
                   myChart.data.labels = databab;
                   chartjs.data.datasets[0].data = databa;
                   chartjs.data.labels = databab;
+                  chartLine.data.datasets[0].data = databa;
+                  chartLine.data.labels = databab;
                           myChart.update();
                           chartjs.update();
+                          chartLine.update();
               }).always(function() {
                   console.log(1);
 
