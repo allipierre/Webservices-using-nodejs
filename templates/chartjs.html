@@ -75,7 +75,7 @@
 
     <div class="col-lg-6">
  <div class="inner cover">
-   <canvas id="chartjs-4" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+   <canvas id="chart-area" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
  </div>
  </div>
     </div>
@@ -189,6 +189,21 @@
                                                         }]
                                                     },
                                                     "options": {}
+                                                });
+
+
+
+
+                                                            chartjs = new Chart(document.getElementById("chart-area"), {
+                                                    "type": "pie",
+                                                    "data": {
+                                                        "labels": graph_label,
+                                                        "datasets": [{
+                                                            "label": "My First Dataset",
+                                                            "data": graph_data,
+                                                            "backgroundColor": ["rgb(35, 123, 177)", "rgb(104, 193, 130)", "rgb(250, 213, 92)","rgb(237, 102, 71)","rgb(133, 97, 200)","rgb(255, 159, 64)"]
+                                                        }]
+                                                    }
                                                 });
 
         }).always(function() {
