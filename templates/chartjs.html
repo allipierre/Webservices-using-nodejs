@@ -25,48 +25,58 @@
 
   <body>
 
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Project Node Task App</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/showSignInPage">SignIn</a></li>
-                  <li><a href="/showSignUpPage">SignUp</a></li>
-                  <li class="active"><a href="/chartjs">Chartjs</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-          <div class="inner cover">
-            <canvas id="myChart" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Node Task App, by <a href="/">Pierre</a>.</p>
-            </div>
-          </div>
-
+    <div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img style="width: 30px;" src="https://camo.githubusercontent.com/b6ba9075a54c192efc59bba53c92e7c23ec8cfe8/68747470733a2f2f63646e2e7261776769742e636f6d2f67696c626172626172612f6c6f676f732f653762316463323636366333646162653663313237366162643061373637623665626436616634332f6c6f676f732f6e6f64656a732d69636f6e2e737667" alt="" class="hide-from-cel">
+                <br><br></a>
         </div>
-
-      </div>
-
+                <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/showSignUpPage">Update</a></li>
+              <li class="active"><a href="/chartjs">Chartjs</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</div>
+
+
+    <div class="container">
+    <div class="row">
+       <div class="col-lg-6">
+    <div class="inner cover">
+      <canvas id="myChart" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+    </div>
+    </div>
+
+    <div class="col-lg-6">
+ <div class="inner cover">
+   <canvas id="chartjs-4" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+ </div>
+ </div>
+    </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Node App, by Pierre..</span>
+      </div>
+    </footer>
 
 
   </body>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="  https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
   <script src="/filejs"></script>
 
@@ -75,7 +85,7 @@
     var graph_label = [],
         graph_data = [];
         var ctx;
-        var myChart;
+        var myChart, chartjs;
 
     $.ajax({
             url: '/usersacces',
@@ -136,6 +146,19 @@
                 }
             });
 
+
+            chartjs = new Chart(document.getElementById("chartjs-4"), {
+    "type": "doughnut",
+    "data": {
+        "labels": graph_label,
+        "datasets": [{
+            "label": "My First Dataset",
+            "data": graph_data,
+            "backgroundColor": ["rgb(35, 123, 177)", "rgb(104, 193, 130)", "rgb(250, 213, 92)","rgb(237, 102, 71)","rgb(133, 97, 200)","rgb(255, 159, 64)"]
+        }]
+    }
+});
+
         }).always(function() {
             console.log(1);
 
@@ -156,7 +179,10 @@
                   }
                   myChart.data.datasets[0].data = databa;
                   myChart.data.labels = databab;
+                  chartjs.data.datasets[0].data = databa;
+                  chartjs.data.labels = databab;
                           myChart.update();
+                          chartjs.update();
               }).always(function() {
                   console.log(1);
 
@@ -167,6 +193,9 @@
       alertify.success('The server has a message for you: ' + message);
 
     });
+
+
+
 
 
 

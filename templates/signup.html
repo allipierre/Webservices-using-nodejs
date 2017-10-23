@@ -43,10 +43,7 @@
                   socket.emit('messagex', $("#vorname").val());
                   console.log('messagex'+ 'sent to Database');
 
-                  socket.on('messagexyz', function(message) {
-                  alertify.success('The server has a message for you: ' + message);
-                  console.log('The server has a message for you: ' + message);
-                  });
+
 
 
             },
@@ -57,6 +54,11 @@
         })
       })
 
+      socket.on('messagexyz', function(message) {
+      alertify.success('The server has a message for you: ' + message);
+      console.log('The server has a message for you: ' + message);
+      });
+
 
     </script>
 
@@ -64,52 +66,57 @@
 
   <body>
 
-    <div class="site-wrapper">
 
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Project Node App</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="/">Home</a></li>
-                  <li class="active"><a href="/showSignInPage">SignIn</a></li>
-                  <li><a href="#">SignUp</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-           <div class="inner cover">
-              <form class="form-signin">
-                <h2 class="form-signin-heading">Please sign up</h2>
-                <label for="inputEmail" class="sr-only">Nom</label>
-                <input type="text" id="nom" class="form-control" placeholder="nom du pays" required="" autofocus="">
-                <label for="inputPassword" class="sr-only">nombre</label>
-                <input type="text" id="nombre" class="form-control" placeholder="update nombre qui est affiche sur le Bar" required="">
-                <input type="text" id="id" class="form-control" placeholder="donner le id" required="">
-                <input type="text" id="vorname" class="form-control" placeholder="vorname de celui qui update" required="">
-
-                <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">update</button>
-              </form>
-          </div>
-
-
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Node App, by <a href="/">Pierre</a>.</p>
-            </div>
-          </div>
-
+    <div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img style="width: 30px;" src="https://camo.githubusercontent.com/b6ba9075a54c192efc59bba53c92e7c23ec8cfe8/68747470733a2f2f63646e2e7261776769742e636f6d2f67696c626172626172612f6c6f676f732f653762316463323636366333646162653663313237366162643061373637623665626436616634332f6c6f676f732f6e6f64656a732d69636f6e2e737667" alt="" class="hide-from-cel">
+                <br><br></a>
         </div>
-
-      </div>
-
+                <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="#">SignUp</a></li>
+              <li><a href="/chartjs">Chartjs</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</div>
+
+  <div class="container">
+    <div class="row">
+<div class="col-lg-6">
+       <form class="form-signin">
+         <h2 class="form-signin-heading">Please Update</h2>
+         <label for="inputEmail" class="sr-only">Nom</label>
+         <input type="text" id="nom" class="form-control" placeholder="nom du pays" required="" autofocus="">
+         <label for="inputPassword" class="sr-only">nombre</label>
+         <input type="text" id="nombre" class="form-control" placeholder="update nombre qui est affiche sur le Bar" required="">
+         <input type="text" id="id" class="form-control" placeholder="donner le id" required="">
+         <input type="text" id="vorname" class="form-control" placeholder="vorname de celui qui update" required="">
+
+         <button style="margin-left: 9px;" id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">update</button>
+       </form>
+
+</div>
+<div class="col-lg-6">
+
+  </div>
+  </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Node App, by Pierre.</span>
+    </div>
+  </footer>
+
 
 
   </body>
