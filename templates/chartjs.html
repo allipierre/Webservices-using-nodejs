@@ -102,7 +102,7 @@
     var graph_label = [],
         graph_data = [];
         var ctx;
-        var myChart, chartjs, chartLine;
+        var myChart, chartjs, chartLine, chartjsa;
 
     $.ajax({
             url: '/usersacces',
@@ -194,7 +194,7 @@
 
 
 
-                                                            chartjs = new Chart(document.getElementById("chart-area"), {
+                                                            chartjsa = new Chart(document.getElementById("chart-area"), {
                                                     "type": "pie",
                                                     "data": {
                                                         "labels": graph_label,
@@ -230,9 +230,13 @@
                   chartjs.data.labels = databab;
                   chartLine.data.datasets[0].data = databa;
                   chartLine.data.labels = databab;
+                  chartjsa.data.datasets[0].data = databa;
+                  chartjsa.data.labels = databab;
+
                           myChart.update();
                           chartjs.update();
                           chartLine.update();
+                          chartjsa.update();
               }).always(function() {
                   console.log(1);
 
