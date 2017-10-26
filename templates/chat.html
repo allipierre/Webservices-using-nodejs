@@ -27,43 +27,6 @@
 
   <script src="/filejs"></script>
 
-    <script type="text/javascript">
-
-      $(function(){
-        $('#btnSignIn').click(function(evt){
-          evt.preventDefault();
-          $.ajax({
-            url: '/usersacces/edit/'+$("#id").val(),
-            type:'POST',
-            data: JSON.stringify({ nom: $("#nom").val(),nombre: $("#nombre").val(),id: $("#id").val() }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success:function(response){
-              console.log(response);
-              // When a client connects, we note it in the console
-
-                  socket.emit('messagex', $("#vorname").val());
-                  console.log('messagex'+ 'sent to Database');
-
-
-
-
-            },
-            error:function(error){
-              console.log(error);
-            }
-          })
-        })
-      })
-
-      socket.on('messagexyz', function(message) {
-      alertify.success('The server has a message for you: ' + message);
-      console.log('The server has a message for you: ' + message);
-      });
-
-
-    </script>
-
   </head>
 
   <body>
@@ -84,9 +47,9 @@
                 <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/">Home</a></li>
-              <li class="active"><a href="#">SignUp</a></li>
+              <li><a href="#">SignUp</a></li>
               <li><a href="/chartjs">Chartjs</a></li>
-              <li><a href="/create">Chat</a></li>
+              <li class="active"><a href="/create">Chat</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -95,17 +58,89 @@
   <div class="container">
     <div class="row">
 <div class="col-lg-6">
-       <form class="form-signin">
+  <div class="connected">
+    <div class="infoConnected">
+      <h2>Who are you?</h2>
+      <br/>
+    <img src="../style/unnamed.jpg" id="creatorImage" />
+       <form class="loginForm">
          <h2 class="form-signin-heading">Please Update</h2>
          <label for="inputEmail" class="sr-only">Nom</label>
-         <input type="text" id="nom" class="form-control" placeholder="nom du pays" required="" autofocus="">
+         <input type="text" id="yourName" placeholder="Your nick name" class="form-control"  required="" autofocus="">
          <label for="inputPassword" class="sr-only">nombre</label>
-         <input type="text" id="nombre" class="form-control" placeholder="update nombre qui est affiche sur le Bar" required="">
-         <input type="text" id="id" class="form-control" placeholder="donner le id" required="">
-         <input type="text" id="vorname" class="form-control" placeholder="vorname de celui qui update" required="">
+         <input type="text" id="yourEmail" placeholder="Your email address"  class="form-control" required="">
 
-         <button style="margin-left: 9px;" id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">update</button>
+         <input style="margin-left: 9px;" type="submit" id="btnSignIn" class="btn btn-lg btn-primary btn-block" value="ENTER" />
        </form>
+       </div>
+     </div>
+
+
+     <div class="personinside">
+
+ 			<img src="../style/unnamed.jpg" id="ownerImage" />
+
+ 			<div class="infoInside">
+ 				<h2>Chat with <span class="nickname-chat"></span></h2>
+ 				<br/>
+
+ 				<form class="loginForm">
+ 					<input type="text" id="hisName" placeholder="Your nick name" class="form-control" />
+ 					<input type="text" id="hisEmail" placeholder="Your email address"  class="form-control" />
+ 					<input style="margin-left: 9px;" type="submit" id="hisEnter" class="btn btn-lg btn-primary btn-block" value="CHAT" />
+ 				</form>
+
+ 			</div>
+
+ 		</div>
+
+    <div class="invite-textfield">
+
+			<h2>Oops, there are no other people in this chat!</h2>
+			<h5>Invite a friend by sending them this URL</h5>
+
+			<div class="link">
+				<a title="Invite a friend" href="" id="link"></a>
+			</div>
+
+		</div>
+
+    <div class="left">
+
+			<img src="../style/unnamed.jpg" id="leftImage" />
+
+			<div class="info">
+				<h2><span class="nickname-left"></span> has left this chat.</h2>
+				<h5>Invite somebody else by sending them this page.</h5>
+			</div>
+
+		</div>
+
+    <div class="toomanypeople">
+
+			<h2>Oops, you can not join this chat!</h2>
+			<h5>There are already two people in it. Would you like to create a <a title="New Room" href="/create" id="room">new room</a>?</h5>
+
+		</div>
+
+    <div class="nomessages">
+
+			<img src="../style/unnamed.jpg" id="noMessagesImage" />
+
+			<div class="info">
+				<h2>You are chatting with <span class="nickname-chat"></span>.</h2>
+				<h5>Send them a message from the form below!</h5>
+			</div>
+
+		</div>
+
+    <div class="chatscreen">
+
+			<ul class="chats">
+				<!-- The chat messages will go here -->
+			</ul>
+
+		</div>
 
 </div>
 <div class="col-lg-6">
@@ -116,10 +151,22 @@
 
   <div id="footer">
     <div class="container">
-      <p class="muted credit">Node App, by Pierre.</p>
+      <div class="col-lg-6">
+      <form id="chatform">
+
+  			<textarea id="message" class="form-control" placeholder="Write something.."></textarea>
+  			<input style="margin-left: 9px;" type="submit" id="submit" class="btn btn-lg btn-primary btn-block" value="SEND"/>
+
+  		</form>
+    </div>
     </div>
   </div>
 
 
   </body>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="/chatjs"></script>
 </html>

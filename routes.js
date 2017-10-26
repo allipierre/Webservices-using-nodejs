@@ -28,9 +28,15 @@ module.exports = function(app,io,connection){
 	  res.sendFile('chartjs.html',{'root':__dirname + '/templates'})
 	})
 
+	/*app.get('/chat',function(req,res){
+	  res.sendFile('chat.html',{'root':__dirname + '/templates'})
+	})*/
+
 	app.get('/filejs',function(req,res){
 	  res.sendFile('file.js',{'root':__dirname + '/js'})
 	})
+
+	 require('./routerchat')(app, io);
 
 
 
