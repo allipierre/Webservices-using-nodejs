@@ -6,7 +6,7 @@ $(function(){
 	var id = Number(window.location.pathname.match(/\/chat\/(\d+)$/)[1]);
 
 	// connect to the socket
-	
+
 
 	// variables which hold the data for each person
 	var name = "",
