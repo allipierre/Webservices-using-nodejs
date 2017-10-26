@@ -147,7 +147,8 @@ function findClientsSocket(io,roomId, namespace) {
 	if (ns) {
 		for (var id in ns.connected) {
 			if(roomId) {
-				var index = ns.connected[id].rooms.indexOf(roomId) ;
+				console.log(roomId);
+				var index = ns.connected[id].rooms.toString().indexOf(roomId) ;
 				if(index !== -1) {
 					res.push(ns.connected[id]);
 				}
