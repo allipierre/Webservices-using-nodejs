@@ -6,8 +6,8 @@ $(function(){
 	var id = Number(window.location.pathname.match(/\/chat\/(\d+)$/)[1]);
 
 	// connect to the socket
-	var socket = io();
 	
+
 	// variables which hold the data for each person
 	var name = "",
 		email = "",
@@ -67,7 +67,7 @@ $(function(){
 				e.preventDefault();
 
 				name = $.trim(yourName.val());
-				
+
 				if(name.length < 1){
 					alert("Please enter a nick name longer than 1 character!");
 					return;
@@ -85,7 +85,7 @@ $(function(){
 					// call the server-side function 'login' and send user's parameters
 					socket.emit('login', {user: name, avatar: email, id: id});
 				}
-			
+
 			});
 		}
 
@@ -126,7 +126,7 @@ $(function(){
 
 	});
 
-	// Other useful 
+	// Other useful
 
 	socket.on('startChat', function(data){
 		console.log(data);

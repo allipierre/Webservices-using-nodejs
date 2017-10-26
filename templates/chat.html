@@ -20,12 +20,7 @@
     <link href="../style/signin.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <script src="/filejs"></script>
 
   </head>
 
@@ -58,11 +53,12 @@
   <div class="container">
     <div class="row">
 <div class="col-lg-6">
+  <section class="section">
   <div class="connected">
+    <img src="../style/unnamed.jpg" id="creatorImage" />
     <div class="infoConnected">
       <h2>Who are you?</h2>
       <br/>
-    <img src="../style/unnamed.jpg" id="creatorImage" />
        <form class="loginForm">
          <h2 class="form-signin-heading">Please Update</h2>
          <label for="inputEmail" class="sr-only">Nom</label>
@@ -141,7 +137,7 @@
 			</ul>
 
 		</div>
-
+</section>
 </div>
 <div class="col-lg-6">
 
@@ -152,12 +148,14 @@
   <div id="footer">
     <div class="container">
       <div class="col-lg-6">
+        <footer>
       <form id="chatform">
 
   			<textarea id="message" class="form-control" placeholder="Write something.."></textarea>
   			<input style="margin-left: 9px;" type="submit" id="submit" class="btn btn-lg btn-primary btn-block" value="SEND"/>
 
   		</form>
+    </footer>
     </div>
     </div>
   </div>
@@ -165,8 +163,11 @@
 
   </body>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-	<script src="/chatjs"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="../js/moment.min.js"></script>
+<script src="../js/file.js"></script>
+<script src="../js/chat.js"></script>
 </html>

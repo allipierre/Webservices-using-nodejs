@@ -4,16 +4,16 @@
 
 // Use the gravatar module, to turn email addresses into avatar images:
 
-var gravatar = require('gravatar');
+
 
 // Export a function, so that we can pass
 // the app and io instances from the server.js file:
 
-module.exports = function(app,io){
+module.exports = function(app,io,gravatar){
 
 	app.get('/chatjs',function(req,res){
 	  res.sendFile('chat.js',{'root':__dirname + '/js'})
-	})
+	});
 
 
 	app.get('/create', function(req,res){
