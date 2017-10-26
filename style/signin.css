@@ -11,12 +11,6 @@
 /* ------------ Body styles ------------ */
 
 
-body {
-	background-color: #f0f1f3;
-	color:#667073;
-	font: 16px/1.3 'Arial',sans-serif;
-}
-
 
 
 
@@ -470,14 +464,7 @@ body {
 	border-radius: 50%;
 }
 
-.body {
-	text-align:center;
-	width: 40%;
-	display: block;
-	margin:0px auto 650px;
-	background-color: #ffffff;
-	color: #637277;
-}
+
 
 .chats {
 	list-style-type: none;
@@ -554,15 +541,7 @@ body {
 
 /* ------------ Footer styles ------------ */
 
-footer {
-	position:fixed;
-	bottom:0;
-	left:0;
-	width:100%;
-	padding-top: 30px;
-	background-color: white;
-	height: 130px;
-}
+
 #chatform {
 	width:700px;
 	margin: 0 auto;
