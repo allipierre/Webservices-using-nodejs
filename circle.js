@@ -3,7 +3,7 @@ const { PI } = Math;
 module.exports = {
 
     area: function(r) {
-        return PI * r ** 2;
+        return PI * r * 2;
     },
 
     circumference: function(r) {
