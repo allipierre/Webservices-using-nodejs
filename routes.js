@@ -225,6 +225,7 @@ module.exports = function(app,io,connection){
 	      socket.message = message;
 	      io.sockets.connected[socket.id].emit('messagexyz', message);
 	      console.log('messagexyz'+ message);
+				console.log('messagexyz'+ message);
 	          });
 
 
