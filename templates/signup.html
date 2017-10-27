@@ -130,9 +130,17 @@
   </div>
 
 <script>
+/*
 var nombree = document.getElementById('vorname');
 nombree.addEventListener("keypress",function(){
- socket.emit("typing",nombree.value);
+  var dInput = this.value;
+ socket.emit("typing",dInput);
+});
+*/
+
+$('#vorname').keyup(function() {
+    var dInput = this.value;
+    socket.emit("typing",dInput);
 });
 </script>
 

@@ -268,6 +268,7 @@
         });
 
         socket.on('message', function(message) {
+          $("#feedback").html('');
           var databa = [];
           var databab = [];
           $.ajax({
@@ -309,7 +310,11 @@
 
 
     socket.on('typing', function(data) {
+      if(data == ''){
+      $("#feedback").html('');
+      }else{
        $("#feedback").html('<p><em>'+ data + ' will update the chart....</em></p>');
+     }
     });
 
 
