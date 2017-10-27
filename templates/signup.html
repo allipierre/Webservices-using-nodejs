@@ -142,6 +142,31 @@ $('#vorname').keyup(function() {
     var dInput = this.value;
     socket.emit("typing",dInput);
 });
+
+
+
+socket.on('connect_failed', function() {
+  console.log('sorry , the is a error with the Connexion');
+});
+
+socket.on('error', function() {
+  console.log('sorry , the is a error with the Connexion');
+});
+
+socket.on('disconnect', function() {
+  console.log('sorry , this is a error with the Connexion');
+  socket.disconnect();
+});
+
+/*
+socket.on('disconnect', function() {
+      // wait 5 seconds then try again
+
+           console.log('sorry , the is a error with the Connexion');
+           socket.disconnect();
+
+  });
+  */
 </script>
 
   </body>
