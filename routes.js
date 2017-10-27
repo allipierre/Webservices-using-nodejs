@@ -228,6 +228,10 @@ module.exports = function(app,io,connection){
 				console.log('messagexyz'+ message);
 	          });
 
+						socket.on('typing', function (data) {
+                   socket.broadcast.emit('typing', data);
+							});
+
 
 	});
 

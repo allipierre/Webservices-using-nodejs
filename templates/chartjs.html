@@ -53,6 +53,7 @@
 
 
     <div class="container">
+      <div id="feedback"></div>
     <div class="row">
        <div class="col-lg-6">
     <div class="inner cover">
@@ -304,6 +305,11 @@
           notifyMe(message);
       alertify.success('The server has a message for you: ' + message);
 
+    });
+
+
+    socket.on('typing', function(data) {
+       $("#feedback").html('<p><em>'+ data + ' will update the chart....</em></p>');
     });
 
 

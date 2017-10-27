@@ -29,6 +29,9 @@
 
     <script type="text/javascript">
 
+
+
+
       $(function(){
         $('#btnSignIn').click(function(evt){
           evt.preventDefault();
@@ -60,6 +63,12 @@
       alertify.success('Chat ' + message);
       console.log('The server has a message for you: ' + message);
       });
+
+
+
+
+
+
 
 
     </script>
@@ -120,6 +129,12 @@
     </div>
   </div>
 
+<script>
+var nombree = document.getElementById('vorname');
+nombree.addEventListener("keypress",function(){
+ socket.emit("typing",nombree.value);
+});
+</script>
 
   </body>
 </html>
