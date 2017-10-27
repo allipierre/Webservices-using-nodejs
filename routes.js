@@ -217,12 +217,13 @@ module.exports = function(app,io,connection){
 	  socket.on('messagex', function (message) {
 	    socket.message = message;
 	    socket.broadcast.emit('message', 'Chart update by '+ socket.message +' successfully');
+			io.sockets.connected[socket.id].emit('messagexyz', 'update');
 	    console.log('message '+ 'You are connected!');
 	      });
 
 	      socket.on('messagexy', function (message) {
 	      socket.message = message;
-	      socket.emit('messagexyz', message);
+	      io.sockets.connected[socket.id].emit('messagexyz', message);
 	      console.log('messagexyz'+ message);
 	          });
 
