@@ -13,19 +13,43 @@ module.exports = function(app,io,connection){
 
 
 	app.get('/',function(req,res){
-	    res.sendFile('home.html',{'root': __dirname + '/templates'});
+	    res.render('home',{title : 'Cool Home , huh!', condition: true, anyArray: [1, 2, 3], class: 'active' });
 	})
 
 	app.get('/showSignInPage',function(req,res){
-	    res.sendFile('signin.html',{'root': __dirname + '/templates'});
+	    res.render('signin',{title : 'Cool Test , huh!', condition: false, class2: 'active' });
 	})
 
 	app.get('/showSignUpPage',function(req,res){
-	  res.sendFile('signup.html',{'root':__dirname + '/templates'})
+	  res.render('signup',{title : 'Cool Test , huh!', condition: false, class3: 'active' })
 	})
 
 	app.get('/chartjs',function(req,res){
-	  res.sendFile('chartjs.html',{'root':__dirname + '/templates'})
+	  res.render('chartjs',{title : 'Cool Test , huh!', condition: false, class4: 'active' })
+	})
+
+	app.get('/test/:id/:name',function(req,res){
+	  res.json({ query: req.params.id,name: req.params.name});
+	})
+	app.get('/test',function(req,res){
+		 var result_ = [] ;
+		connection.query('SELECT * from administration_users_niveaux_acces', function(err, result, fields) {
+ 	 //connection.end();
+
+ 	   if (err) throw err;
+     var graph_data = [];
+		 var graph_label = [];
+
+ 	    //console.log('result' +result[0].id);
+			for (i = 0; i < result.length; i++) {
+         console.log('result' +result[i].id);
+				 graph_data.push(result[i].id);
+				 graph_label.push('"'+result[i].nom +'"');
+      }
+			 console.log('length' +graph_label);
+			res.render('test', {title : 'Cool Test , huh!', condition: false, class1: 'active', datausers: result, graph_data: graph_data , graph_label: graph_label })
+ 	   });
+
 	})
 
 	/*app.get('/chat',function(req,res){

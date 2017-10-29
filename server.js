@@ -5,6 +5,7 @@
   var path = require('path');
   var util = require('util');
   var v8 = require('v8');
+  var hbs = require('express-handlebars');
 
 
 
@@ -31,7 +32,7 @@ var connection = mysql.createConnection({
 
  app.use(parser.json());
  app.use(parser.urlencoded({ extended: true }));
- require('./config')(app, io);
+ require('./config')(app, io, hbs);
  require('./routes')(app, io,connection);
 
  console.log(__dirname);

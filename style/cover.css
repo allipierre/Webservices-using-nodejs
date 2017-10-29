@@ -27,7 +27,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background-color: #333 !important;
 }
 body {
   color: #fff;
@@ -251,4 +251,13 @@ label {
 
 label select{
   color: rgb(255, 0, 0);
+}
+
+tbody{
+      background: rgb(255, 255, 255) !important;
+}
+
+thead {
+    background: rgb(35, 123, 177);
+    color: rgb(255, 255, 255) !important;
 }

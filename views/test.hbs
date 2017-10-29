@@ -1,0 +1,99 @@
+<div style="color: white;" class="container">
+   <h1>{{ title }}</h1>
+   <p>Welcome to {{ title }}</p>
+</div>
+<div class="container">
+   <div id="feedback"></div>
+   <div class="row">
+      <div class="col-lg-6">
+         <div class="inner cover">
+            <canvas id="myChart" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="inner cover">
+            <canvas id="chartjs-4" width="614" height="307" class="chartjs-render-monitor" style="display: block; width: 614px; height: 307px;"></canvas>
+         </div>
+      </div>
+   </div>
+</div>
+<div style="padding-top: 40px;" class="container">
+   <table class="table">
+      <thead>
+         <tr>
+            <th>Id</th>
+            <th>Alias</th>
+            <th>nom</th>
+            <th>Email</th>
+            <th>Date</th>
+         </tr>
+      </thead>
+      <tbody>
+         {{#each datausers}}
+         <tr>
+            <td>{{this.id}}
+            <td>{{this.alias}}
+            <td>{{this.nom}}
+            <td>{{this.email}}
+            <td>{{this.reg_date}}
+         </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+<script>
+
+
+chartjs = new Chart(document.getElementById("chartjs-4"), {
+    "type": "doughnut",
+    "data": {
+        "labels": [{{{graph_label}}}],
+        "datasets": [{
+            "label": "My First Dataset",
+            "data":  [{{graph_data}}],
+            "backgroundColor": ["rgb(35, 123, 177)", "rgb(104, 193, 130)", "rgb(250, 213, 92)","rgb(237, 102, 71)","rgb(133, 97, 200)","rgb(255, 159, 64)"]
+        }]
+    }
+});
+
+
+ctx = document.getElementById("myChart").getContext('2d');
+             myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{{{graph_label}}}],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [{{graph_data}}],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 206, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(153, 102, 255)',
+                            'rgb(255, 159, 64)'
+                        ],
+                        borderColor: [
+                            'none',
+                              'none',
+                              'none',
+                              'none',
+                              'none',
+                              'none'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+</script>

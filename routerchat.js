@@ -28,7 +28,7 @@ module.exports = function(app,io,gravatar){
 	app.get('/chat/:id', function(req,res){
 
 		// Render the chant.html view
-		 res.sendFile('chat.html',{'root':__dirname + '/templates'})
+		 res.render('chat',{title : 'Cool Chat , huh!', condition: true, anyArray: [1, 2, 3], class6: 'active' });
 	});
 
 
